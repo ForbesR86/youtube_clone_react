@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import SearchBar from './components/SearchBar/SearchBar'
 // import YouTubeAPI from './components/YouTubeAPI/YouTubeAPI'
-// import VideoResults from './components/VideoResults/VideoResults'
+import VideoResults from './components/VideoResults/VideoResults'
 
 import Footer from './components/Footer/Footer'
 
@@ -25,8 +25,8 @@ class App extends Component {
         params: {
           q: termFromSearchBar,
           part: "snippet",
-          maxResults: 10,
-          key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'
+          maxResults: 5,
+          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'
         }
         })
         .then(res => {
@@ -54,14 +54,11 @@ handleVideoSelect = (video) => {
               <>
                 <div class="container-fluid">
                             <SearchBar handleFormSubmit={this.handleSubmit} />
+                            <VideoResults videos={this.state.videos} />
+
                 </div>
                 <hr/>
-
-                <table>
-                {this.state.videos.map((item =>
-                <tr><td key={item.id.videoId}>{item.snippet.title}</td></tr>
-                ))}
-</table>               
+ 
                 
                 <Footer />
             </>
