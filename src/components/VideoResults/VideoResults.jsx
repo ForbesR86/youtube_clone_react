@@ -18,7 +18,7 @@ class VideoResults extends Component {
             <div>
                     <h5 >{item.snippet.title}</h5>
                     <p >{item.id.videoId}</p>
-                     <a href="{item.id.videoId}">View video</a>
+                     <a href="https://www.youtube.com/watch?v={item.id.videoId}">View video</a>
              </div>
 
           );
