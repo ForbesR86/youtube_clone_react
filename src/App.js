@@ -2,13 +2,17 @@
 import './App.css';
 import React, {Component} from "react";
 import Header from './components/Header/Header'
+
+import SearchBar from './components/SearchBar/SearchBar'
+// import VideoResults from './components/VideoResults/VideoResults'
+
 import Footer from './components/Footer/Footer'
 
 class App extends Component {
   constructor(props){
       super(props);
       this.state = {
-          search: 0,
+          search: '',
           comments: []
       };
   };
@@ -16,13 +20,26 @@ class App extends Component {
 
   render() {
       return(
-          <div className="container-fluid">
-          < Header />
+              <>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            <Header />
+                        </div>
 
-          < Footer />
+                        <div class="col-6">
+                            <SearchBar handleFormSubmit={this.handleSubmit} />
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                </div>
+                <hr/>
+                
+                
+                <Footer />
+            </>
          
-          
-          </div>
+
       )
   };
 
