@@ -2,12 +2,13 @@
 import axios from 'axios';
 const KEY = 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'; //randy key
 
+export const baseParams = {
+  part: "snippet",
+  maxResults: 5,
+  key: KEY
+};
+
 export default axios.create({
-    baseURL: 'https://www.googleapis.com/youtube/v3/',
-    params: {
-        part: 'snippet',
-        maxResults: 10,
-        key: KEY
-    }
-})
+  baseURL: "https://www.googleapis.com/youtube/v3"
+});
 //https://www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}
