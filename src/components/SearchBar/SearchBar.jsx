@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component} from "react";
+import logotrans from '../../logotrans.png'
 
-class SearchBar extends React.Component {
+class SearchBar extends Component {
     state = {
-        term: ''
+        search: ''
     };
     handleChange = (event) => {
         this.setState({
@@ -16,18 +17,23 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            
+
+                <>
+                
                 <form onSubmit={this.handleSubmit}>
-                        <label htmlFor="video-search">YouTube Video Search</label>
-                        <input
-                            type="text"
-                            onChange={this.handleChange}
-                            value={this.state.search}
-                            placeholder="Search"
-                            name="videosearch" 
-                        />
-                        <button type="submit">Search</button>
-                </form>
+                <img src={logotrans} alt="Clone Tube" width="10%" height="10%" />
+                <label htmlFor="videosearch">YouTube Video Search</label>
+                <input
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.search}
+                    placeholder="Search"
+                    name="videosearch" />
+                <button type="submit">Search</button>
+            </form></>
+                
+        
+                
                 
             
         )
