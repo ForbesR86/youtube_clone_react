@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 // const KEY = 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'; //randy key
-const KEY = 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'; //gerry key
+//const KEY = 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'; //gerry key
 
 
 export const baseParams = {
