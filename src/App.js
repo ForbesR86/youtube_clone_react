@@ -20,10 +20,23 @@ class App extends Component {
       super(props);
       this.state = {
           videos: [],
-          comments: [],
           selectedVideo: 'w7ejDZ8SWv8',
+          comments: [],
       };
   };
+
+  async componentDidMount() {
+    // GET request using axios with async/await
+    const response = await axios.get('http://127.0.0.1:8000/comments/w7ejDZ8SWv8');
+    this.setState({ comments: response.data })
+}
+
+  componentDidUpdate(prevProps) {
+    if (this.state.selectedVideo !== prevProps) {
+      this.getComments();
+      }
+    
+    }
 
   handleSubmit = async (termFromSearchBar) => {
     await axios

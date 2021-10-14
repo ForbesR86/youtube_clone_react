@@ -8,7 +8,7 @@ const Comments = ({comments_list}) => {
 
     return (
         <div>
-            <div className='ui embed'>
+            <div>
                 comments here
             </div>
         </div>
