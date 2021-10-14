@@ -4,9 +4,6 @@ class VideoResults extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      videos: [],
-    };
   }
 
   render() {
