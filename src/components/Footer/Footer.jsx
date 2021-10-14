@@ -1,16 +1,15 @@
 import React from 'react';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function Footer(props) {
     return(
-        <div className="row row-space">
-            <div className="col-md-12" style={{ padding:0}}>
-                <div className="titlebar-nav">
-                <h6>Clone Tube Copyright 2021</h6>
-                </div>
-            </div>
-        </div>
-            )
+            <Container fluid>
+                <Row>
+                    <Col ><h6 class="text-center">Clone Tube Copyright 2021</h6></Col>
+                </Row>
+            </Container>
+    )
 }
 
 export default Footer;

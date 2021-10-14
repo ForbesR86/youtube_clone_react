@@ -2,13 +2,18 @@
 import './App.css';
 import React, {Component} from "react";
 import axios from 'axios';
-// import Header from './components/Header/Header'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
+
+// import Header from './components/Header/Header'
 import SearchBar from './components/SearchBar/SearchBar'
 // import YouTubeAPI from './components/YouTubeAPI/YouTubeAPI'
 import VideoResults from './components/VideoResults/VideoResults'
-
 import Footer from './components/Footer/Footer'
+import VideoPlayer from './components/VideoPlayer/VideoPlayer'
+import Comments from './components/Comments/Comments'
+
 
 class App extends Component {
   constructor(props){
@@ -16,6 +21,7 @@ class App extends Component {
       this.state = {
           videos: [],
           comments: [],
+          selectedVideo: 'w7ejDZ8SWv8',
       };
   };
 
@@ -26,7 +32,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: ''
+          key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'
         }
         })
         .then(res => {
@@ -46,19 +52,27 @@ class App extends Component {
 
 handleVideoSelect = (video) => {
     this.setState({selectedVideo: video})
+
 }
 
 
   render() {
+      console.log(this.state.selectedVideo)
       return(
               <>
                 <div class="container-fluid">
                             <SearchBar handleFormSubmit={this.handleSubmit} />
                             <VideoResults videos={this.state.videos} />
 
+
                 </div>
                 <hr/>
- 
+                <Container>
+                    <Row>
+                        <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
+                        <Col sm={4}> < Comments /> </Col>
+                    </Row>
+                </Container>
                 
                 <Footer />
             </>
