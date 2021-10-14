@@ -105,7 +105,7 @@ handleVideoSelect = (video) => {
                         <Col sm={4}> Comment Form here </Col>
                     </Row>
                 </Container>
-                <br><br><br></br></br></br>
+                <br/>
                 <Footer />
             </>
          
