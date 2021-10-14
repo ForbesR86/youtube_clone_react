@@ -16,27 +16,42 @@ import Comments from './components/Comments/Comments'
 
 
 class App extends Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          videos: [],
-          selectedVideo: 'w7ejDZ8SWv8',
-          comments: [],
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      videos: [],
+      selectedVideo: 'w7ejDZ8SWv8',
+      comments: [],
+    };
+
   };
 
-  async componentDidMount() {
-    // GET request using axios with async/await
-    const response = await axios.get('http://127.0.0.1:8000/comments/w7ejDZ8SWv8');
-    this.setState({ comments: response.data })
-}
+  componentDidMount() {
+    this.getComments();
+  }
 
-  componentDidUpdate(prevProps) {
-    if (this.state.selectedVideo !== prevProps) {
-      this.getComments();
-      }
+  async getComments() {
+    await axios
+      .get('http://127.0.0.1:8000/comments/')
+      .then(res => {
+              const musiclist = res.data;
+              this.setState({
+                comments: musiclist
+              })
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    // this.setState({ songs: musiclist });
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.state.selectedVideo !== prevProps) {
+  //     this.getComments();
+  //     }
     
-    }
+  //   }
 
   handleSubmit = async (termFromSearchBar) => {
     await axios
@@ -83,7 +98,11 @@ handleVideoSelect = (video) => {
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> < Comments /> </Col>
+                        <Col sm={4}> < Comments comments_list={this.state.comments} videoId={this.state.selectedVideo} /> </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={8}> Video Details Here </Col>
+                        <Col sm={4}> Comment Form here </Col>
                     </Row>
                 </Container>
                 
