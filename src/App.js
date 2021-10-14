@@ -26,7 +26,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'
+          key: ''
         }
         })
         .then(res => {
