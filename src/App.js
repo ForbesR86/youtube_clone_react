@@ -113,6 +113,8 @@ class App extends Component {
 
 
 handleVideoSelect = (video) => {
+    
+    this.getVideoRecommendations();
     this.setState({
       selectedVideo: video,
       videoID: video.id.videoId
@@ -120,8 +122,26 @@ handleVideoSelect = (video) => {
 
 }
 
-getVideoRecommendations = (video) => {
-  console.log(video);
+getVideoRecommendations = async (video) => {
+      await axios
+      .get('https://www.googleapis.com/youtube/v3/search', {
+      params: {
+        part: "snippet",
+        maxResults: 5,
+        relatedToVideoId: video,
+        key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o',
+        
+      }
+      })
+      .then(res => {
+          this.setState({
+              recommendedVideos: res.data
+          });
+          }
+      )
+      .catch(function(error) {
+          console.log(error);
+      });
 
 }
 
