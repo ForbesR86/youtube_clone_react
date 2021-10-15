@@ -13,6 +13,7 @@ import VideoResults from './components/VideoResults/VideoResults'
 import Footer from './components/Footer/Footer'
 import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import Comments from './components/Comments/Comments'
+import CommentForm from './components/Comment_Form/Comment_Form'
 
 
 class App extends Component {
@@ -82,6 +83,20 @@ handleVideoSelect = (video) => {
     this.setState({selectedVideo: video})
 
 }
+createComment = (NewComment) => {
+  const newCommentFormatted = {
+    videoid: this.state.selectedVideo,
+    comment: NewComment.comment,
+    likes: '0',
+    dislikes: '0',
+  }
+  console.log(newCommentFormatted)
+  axios.post('http://127.0.0.1:8000/comments/', newCommentFormatted)
+        .then(res => console.log(res.data));
+          this.setState({
+          isLoading: true
+          })
+}
 
 
   render() {
@@ -102,7 +117,7 @@ handleVideoSelect = (video) => {
                     </Row>
                     <Row>
                         <Col sm={8}> Video Details Here </Col>
-                        <Col sm={4}> Comment Form here </Col>
+                        <Col sm={4}> <CommentForm createNewComment={this.createComment}/></Col>
                     </Row>
                 </Container>
                 <br/>
