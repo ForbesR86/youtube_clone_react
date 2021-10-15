@@ -94,7 +94,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'
+          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE'
         }
         })
         .then(res => {
@@ -130,7 +130,7 @@ getVideoRecommendations = async (video) => {
         params: {
           relatedToVideoId: video,
           type: 'video',
-          key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o',
+          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE',
           }
         })
         .then(res => {
@@ -164,7 +164,7 @@ createComment = (NewComment) => {
 
 
   render() {
-    console.log(this.state.recommendedVideos.items)
+    console.log(this.state.recommendedVideos)
       return(
               <>
                 <div class="container-fluid">
