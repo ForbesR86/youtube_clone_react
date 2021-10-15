@@ -94,7 +94,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE'
+          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'
         }
         })
         .then(res => {
@@ -130,7 +130,7 @@ getVideoRecommendations = async (video) => {
         params: {
           relatedToVideoId: video,
           type: 'video',
-          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE',
+          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8',
           }
         })
         .then(res => {

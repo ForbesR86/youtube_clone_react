@@ -1,5 +1,4 @@
 import React from 'react';
-import Video from '../Video/Video';
 
 const VideoRecommended = ({videos , videoSelectHandler}) => {
   console.log(videos)
@@ -11,7 +10,15 @@ const VideoRecommended = ({videos , videoSelectHandler}) => {
     <div className="card-group">
     {videos.map((video) => {
       return (
-        <Video video={video} videoSelectHandler={videoSelectHandler} key={video.id.videoId}/> 
+        <div onClick={ () => videoSelectHandler(video)} className="card" >
+                <div className="card-body">
+                    <h5 className="card-title">{video.id.videoId}</h5>
+                        <p className="card-text"></p>
+                </div>
+                <div className="card-footer">
+                    <small className="text-muted"></small>
+                </div>
+        </div> 
       );
     })}
     </div>
