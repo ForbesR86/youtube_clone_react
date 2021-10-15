@@ -14,6 +14,7 @@ import Footer from './components/Footer/Footer'
 import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import Comments from './components/Comments/Comments'
 import CommentForm from './components/Comment_Form/Comment_Form'
+import VideoRecommended from './components/VideoRecommended/VideoRecommended';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
     super(props);
     this.state = {
       videos: [],
+      recommendedVideos: [],
       selectedVideo: '',
       videoID: '',
       comments: [],
@@ -116,6 +118,14 @@ handleVideoSelect = (video) => {
     })
 
 }
+
+getVideoRecommendations = (video) => {
+  console.log(video);
+
+}
+
+
+
 createComment = (NewComment) => {
   const newCommentFormatted = {
     videoid: this.state.selectedVideo.id.videoId,
@@ -153,6 +163,13 @@ createComment = (NewComment) => {
                     </Row>
                 </Container>
                 <br/>
+
+                <div class="container-fluid">
+                            
+                            <VideoRecommended videos={this.state.recommendedVideos} videoSelectHandler={this.handleVideoSelect}/>
+
+
+                </div>
                 <Footer />
             </>
          
