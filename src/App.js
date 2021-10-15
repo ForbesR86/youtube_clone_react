@@ -24,6 +24,7 @@ class App extends Component {
       selectedVideo: '',
       videoID: '',
       comments: [],
+      newComment: false
     };
 
   };
@@ -45,10 +46,23 @@ class App extends Component {
              console.log(error);
           })
     }
+    if (this.state.newComment) {
+      axios.get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+         .then(response => {
+            this.setState({
+               comments: response.data,
+               newComment: false
+            });
+         })
+         .catch(function(error) {
+            console.log(error);
+         })
+   }
  }
 
-  async getComments() {
 
+  async getComments() {
+    console.log('getComments video ID:' + this.state.videoID)
     if (!this.state.videoID) {
       return <div>No Video selected</div>;
     }
@@ -100,7 +114,6 @@ handleVideoSelect = (video) => {
       selectedVideo: video,
       videoID: video.id.videoId
     })
-    this.getComments();
 
 }
 createComment = (NewComment) => {
@@ -113,9 +126,9 @@ createComment = (NewComment) => {
   axios.post('http://127.0.0.1:8000/comments/', newCommentFormatted)
         .then(res => console.log(res.data));
           this.setState({
-          isLoading: true
+          newComment: true
           })
-          this.getComments();
+          
 }
 
 
