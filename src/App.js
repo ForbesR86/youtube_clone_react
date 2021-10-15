@@ -113,8 +113,7 @@ class App extends Component {
 
 
 handleVideoSelect = (video) => {
-    
-    this.getVideoRecommendations();
+    this.getVideoRecommendations(video.id.videoId);
     this.setState({
       selectedVideo: video,
       videoID: video.id.videoId
@@ -122,26 +121,28 @@ handleVideoSelect = (video) => {
 
 }
 
+//https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
+//https://www.googleapis.com/youtube/v3/search?relatedToVideoId=lN2AaifIp7s&type=lN2AaifIp7s&key=AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o
+
 getVideoRecommendations = async (video) => {
+
       await axios
-      .get('https://www.googleapis.com/youtube/v3/search', {
-      params: {
-        part: "snippet",
-        maxResults: 5,
-        relatedToVideoId: video,
-        key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o',
-        
-      }
-      })
-      .then(res => {
+        .get('https://www.googleapis.com/youtube/v3/search', {
+        params: {
+          relatedToVideoId: video,
+          type: 'video',
+          key: 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o',
+          }
+        })
+        .then(res => {
           this.setState({
               recommendedVideos: res.data
-          });
-          }
-      )
-      .catch(function(error) {
+          }); 
+          console.log(this.state.recommendedVideos)
+          })
+        .catch(function(error) {
           console.log(error);
-      });
+          });
 
 }
 
@@ -164,6 +165,7 @@ createComment = (NewComment) => {
 
 
   render() {
+    console.log(this.state.recommendedVideos)
       return(
               <>
                 <div class="container-fluid">
