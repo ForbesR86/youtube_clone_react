@@ -15,6 +15,7 @@ import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import Comments from './components/Comments/Comments'
 import CommentForm from './components/Comment_Form/Comment_Form'
 import VideoRecommended from './components/VideoRecommended/VideoRecommended';
+import VideoDetails from './components/VideoDetails/VideoDetails'
 
 
 class App extends Component {
@@ -158,7 +159,7 @@ createComment = (NewComment) => {
                         <Col sm={4}> < Comments comments_list={this.state.comments}/> </Col>
                     </Row>
                     <Row>
-                        <Col sm={8}> Video Details Here </Col>
+                        <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
                         <Col sm={4}> <CommentForm createNewComment={this.createComment}/></Col>
                     </Row>
                 </Container>
