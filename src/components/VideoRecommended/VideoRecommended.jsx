@@ -11,7 +11,7 @@ const VideoRecommended = ({videos , videoSelectHandler}) => {
       return (
         <div onClick={ () => videoSelectHandler(video)} className="card" >
                 <div className="card-body">
-                    <h5 className="card-title">{video.items.id.videoID}</h5>
+                    <h5 className="card-title">{video.id.videoId}</h5>
                         <p className="card-text"></p>
                 </div>
                 <div className="card-footer">
