@@ -12,8 +12,8 @@ const VideoPlayer = ({video}) => {
                 title='CloneTube' 
                 id="ytplayer" 
                 type="text/html" 
-                width="640" 
-                height="360" 
+                width="853" 
+                height="505" 
                 src={videoSrc} 
                 frameborder="0">
             </iframe>
