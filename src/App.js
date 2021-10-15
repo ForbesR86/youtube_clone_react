@@ -119,6 +119,8 @@ handleVideoSelect = (video) => {
       videoID: video.id.videoId
     })
 
+    this.getVideoRecommendations(this.state.videoId);
+
 }
 
 //https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
@@ -165,7 +167,7 @@ createComment = (NewComment) => {
 
 
   render() {
-    console.log(this.state.recommendedVideos)
+    console.log(this.state.recommendedVideos.items)
       return(
               <>
                 <div class="container-fluid">
@@ -189,7 +191,7 @@ createComment = (NewComment) => {
 
                 <div class="container-fluid">
                             
-                            <VideoRecommended videos={this.state.recommendedVideos} videoSelectHandler={this.handleVideoSelect}/>
+                            <VideoRecommended videos={this.state.recommendedVideos.items} videoSelectHandler={this.handleVideoSelect}/>
 
 
                 </div>
