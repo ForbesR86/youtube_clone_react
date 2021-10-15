@@ -118,9 +118,6 @@ handleVideoSelect = (video) => {
       selectedVideo: video,
       videoID: video.id.videoId
     })
-
-    this.getVideoRecommendations(this.state.videoId);
-
 }
 
 //https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
