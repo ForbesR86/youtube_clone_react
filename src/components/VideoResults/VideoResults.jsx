@@ -12,7 +12,7 @@ class VideoResults extends Component {
           
         {this.props.videos.map((item) => {
           return (
-            <div>
+            <div key={item.id.videoId}>
                     <h5 >{item.snippet.title}</h5>
                     <p >{item.id.videoId}</p>
                      <a href="https://www.youtube.com/watch?v={item.id.videoId}">View video</a>

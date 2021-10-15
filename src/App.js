@@ -43,16 +43,8 @@ class App extends Component {
       .catch(function(error) {
         console.log(error);
       });
-
-    // this.setState({ songs: musiclist });
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.state.selectedVideo !== prevProps) {
-  //     this.getComments();
-  //     }
-    
-  //   }
 
   handleSubmit = async (termFromSearchBar) => {
     await axios
@@ -96,6 +88,7 @@ createComment = (NewComment) => {
           this.setState({
           isLoading: true
           })
+          this.getComments();
 }
 
 
