@@ -98,7 +98,7 @@ createComment = (NewComment) => {
               <>
                 <div class="container-fluid">
                             <SearchBar handleFormSubmit={this.handleSubmit} />
-                            <VideoResults videos={this.state.videos} />
+                            <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
 
 
                 </div>

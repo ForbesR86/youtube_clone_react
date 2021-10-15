@@ -1,30 +1,17 @@
-import React, { Component } from "react";
+import React from 'react';
+import Video from '../Video/Video';
 
-class VideoResults extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-  render() {
+const VideoResults = ({videos , videoSelectHandler}) => {
+    
     return (
-      <div>
-          
-        {this.props.videos.map((item) => {
-          return (
-            <div key={item.id.videoId}>
-                    <h5 >{item.snippet.title}</h5>
-                    <p >{item.id.videoId}</p>
-                     <a href="https://www.youtube.com/watch?v={item.id.videoId}">View video</a>
-             </div>
-
-          );
-        })}
-        <button>More Videos</button>
-        
+      <div className="card-group">
+      {videos.map((video) => {
+        return (
+          <Video video={video} videoSelectHandler={videoSelectHandler} key={video.id.videoId}/> 
+        );
+      })}
       </div>
-    );
-  }
-}
+    )
+};
 
 export default VideoResults;
