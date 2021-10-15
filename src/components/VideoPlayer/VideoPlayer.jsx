@@ -1,11 +1,13 @@
 import React from 'react';
 
 const VideoPlayer = ({video}) => {
+    console.log("video player selected video log")
+    console.log(video)
     if (!video) {
         return <div>No Video Selected</div>;
     }
 
-    const videoSrc = `https://www.youtube.com/embed/${video}`;
+    const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
     return (
         <><div>
             <iframe
