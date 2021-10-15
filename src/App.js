@@ -21,7 +21,8 @@ class App extends Component {
     super(props);
     this.state = {
       videos: [],
-      selectedVideo: 'w7ejDZ8SWv8',
+      selectedVideo: '',
+      videoID: '',
       comments: [],
     };
 
@@ -31,18 +32,41 @@ class App extends Component {
     this.getComments();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log("starting a component did update")
+    if (prevState.videoID !== this.state.videoID) {
+       axios.get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+          .then(response => {
+             this.setState({
+                comments: response.data
+             });
+          })
+          .catch(function(error) {
+             console.log(error);
+          })
+    }
+ }
+
   async getComments() {
-    await axios
-      .get('http://127.0.0.1:8000/comments/')
-      .then(res => {
+
+    if (!this.state.videoID) {
+      return <div>No Video selected</div>;
+    }
+    else{
+      console.log('getting comment for new video:' + this.state.videoID)
+      await axios
+        .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+        .then(res => {
               const musiclist = res.data;
               this.setState({
                 comments: musiclist
               })
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+        console.log(this.state.comments)
+      }
   }
 
 
@@ -72,17 +96,20 @@ class App extends Component {
 
 
 handleVideoSelect = (video) => {
-    this.setState({selectedVideo: video})
+    this.setState({
+      selectedVideo: video,
+      videoID: video.id.videoId
+    })
+    this.getComments();
 
 }
 createComment = (NewComment) => {
   const newCommentFormatted = {
-    videoid: this.state.selectedVideo,
+    videoid: this.state.selectedVideo.id.videoId,
     comment: NewComment.comment,
     likes: '0',
     dislikes: '0',
   }
-  console.log(newCommentFormatted)
   axios.post('http://127.0.0.1:8000/comments/', newCommentFormatted)
         .then(res => console.log(res.data));
           this.setState({
@@ -93,7 +120,6 @@ createComment = (NewComment) => {
 
 
   render() {
-      console.log(this.state.selectedVideo)
       return(
               <>
                 <div class="container-fluid">
@@ -106,7 +132,7 @@ createComment = (NewComment) => {
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> < Comments comments_list={this.state.comments} videoId={this.state.selectedVideo} /> </Col>
+                        <Col sm={4}> < Comments comments_list={this.state.comments}/> </Col>
                     </Row>
                     <Row>
                         <Col sm={8}> Video Details Here </Col>

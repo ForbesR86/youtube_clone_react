@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const Comments = ({comments_list}, {videoId}) => {
+const Comments = ({comments_list}) => {
     
     if (!comments_list) {
-        return <div>No Comments found</div>;
+        return <div>No Video</div>;
     }
 
     return (
