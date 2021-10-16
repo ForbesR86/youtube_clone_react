@@ -162,6 +162,21 @@ createComment = (NewComment) => {
           })
           
 }
+handleLike = (commentID) => {
+  console.log('I liked: ' + commentID)
+  axios.patch('http://127.0.0.1:8000/comments/' + commentID + '/Like');
+  this.setState({
+    newComment: true
+    })
+}
+
+handleDislike = (commentID) => {
+  console.log('I disliked: ' + commentID)
+  axios.patch('http://127.0.0.1:8000/comments/' + commentID + '/Dislike');
+  this.setState({
+    newComment: true
+    })
+}
 
 
   render() {
@@ -178,7 +193,7 @@ createComment = (NewComment) => {
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> < Comments comments_list={this.state.comments}/> </Col>
+                        <Col sm={4}> < Comments comments_list={this.state.comments} likeComment={this.handleLike} dislikeComment={this.handleDislike}/> </Col>
                     </Row>
                     <Row>
                         <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
