@@ -130,6 +130,7 @@ getVideoRecommendations = async (video) => {
         params: {
           relatedToVideoId: video,
           type: 'video',
+          part: 'snippet',
           key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8',
           }
         })

@@ -12,7 +12,7 @@ const Comments = ({comments_list}) => {
             {comments_list.map(comment => {
                 return (
                     <li key={comment.id}>
-                        {comment.date} - {comment.comment} 
+                        {comment.date} - {comment.comment} <button onClick={props.like}>Like</button><button onClick={props.dislike}>Dislike</button>
                     </li>
                 )
             })}
