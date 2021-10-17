@@ -1,25 +1,34 @@
 import React from 'react';
-import like from '../../static/like.gif'
-import dislike from '../../static/dislike.gif'
+import like from '../../static/like.png';
+import dislike from '../../static/dislike.png';
 
-const Comments = ({comments_list, likeComment, dislikeComment}) => {
+const Comments = ({comments_list, replies, likeComment, dislikeComment}) => {
     
     if (!comments_list) {
         return <div>No Video</div>;
     }
     console.log(comments_list)
+    console.log(replies)
+ 
     return (
-        <ul>
+        <dl>
             {comments_list.map(comment => {
                 return (
-                    <li key={comment.id}>
-                        {comment.date} - {comment.comment} <br></br>
-                        {comment.likes}<img src={like.gif} alt="Like!" onClick={ () => likeComment(comment.id)}></img>{comment.dislikes}<img src={dislike.gif} alt="Dislike!" onClick={ () => dislikeComment(comment.id)}></img>
-            
-                    </li>
+                    <><dt key={comment.id}>
+                        {comment.comment} <br></br>
+                        {comment.likes}<img src={like} alt="Like!" height="25" width="25" onClick={() => likeComment(comment.id)}></img>
+                        {comment.dislikes}<img src={dislike} alt="Dislike!" height="20" width="20" onClick={() => dislikeComment(comment.id)}></img>
+                    </dt>
+                        {replies.filter(reply => reply.commentid === comment.id).map(replycomment => (
+                        <dd>
+                        {replycomment}
+                        </dd>
+                        ))}
+                        </>
                 )
+
             })}
-</ul>
+        </dl>
 
     )
 }

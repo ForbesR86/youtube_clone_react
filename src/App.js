@@ -27,6 +27,7 @@ class App extends Component {
       selectedVideo: '',
       videoID: '',
       comments: [],
+      replies: [],
       newComment: false
     };
 
@@ -77,6 +78,20 @@ class App extends Component {
               const musiclist = res.data;
               this.setState({
                 comments: musiclist
+              })
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+        console.log(this.state.comments)
+
+        //Get replies
+        await axios
+        .get('http://127.0.0.1:8000/replies/')
+        .then(res => {
+              const musiclist = res.data;
+              this.setState({
+                replies: musiclist
               })
         })
         .catch(function(error) {
@@ -186,14 +201,12 @@ handleDislike = (commentID) => {
                 <div class="container-fluid">
                             <SearchBar handleFormSubmit={this.handleSubmit} />
                             <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
-
-
                 </div>
                 <hr/>
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> < Comments comments_list={this.state.comments} likeComment={this.handleLike} dislikeComment={this.handleDislike}/> </Col>
+                        <Col sm={4}> < Comments comments_list={this.state.comments} replies = {this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike}/> </Col>
                     </Row>
                     <Row>
                         <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
