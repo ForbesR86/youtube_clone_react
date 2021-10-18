@@ -1,31 +1,27 @@
 import React from 'react';
 import axios from 'axios';
-
-const Replies = ({commentid}) => {
+//'http://127.0.0.1:8000/replies/' + commentID + '/'
+const Replies = ({commentID}) => {
 //Get replies
-    await axios
-      .get('http://127.0.0.1:8000/replies/')
-      .then(res => {
-        const replylist = res.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    console.log(replylist)
+let repliesList = axios.get('http://127.0.0.1:8000/replies/' + commentID + '/')
+
       
-
-    return (
-        <>    
-                {replylist.map(comment => {
+    if (repliesList) {
+        console.log('start reply')
+        return (
+            <>    
+                {repliesList.map(Reply => {
                     return (
-                        <dd key={comment.id}>
-                        {comment.reply}
+                        <dd key={Reply.id}>
+                        {Reply.reply}
                         </dd>
-        </>
-                )
+                    
+                    )
+            
+                })}
+            </>
+            
 
-            })}
-
-    )
+    )}
 }
-export default Comments;
+export default Replies;

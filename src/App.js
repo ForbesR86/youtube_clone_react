@@ -66,7 +66,6 @@ class App extends Component {
 
 
   async getComments() {
-    console.log('getComments video ID:' + this.state.videoID)
     if (!this.state.videoID) {
       return <div>No Video selected</div>;
     }
