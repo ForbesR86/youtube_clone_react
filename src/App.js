@@ -108,7 +108,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE'
+          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'
         }
         })
         .then(res => {
@@ -145,7 +145,7 @@ getVideoRecommendations = async (video) => {
           relatedToVideoId: video,
           type: 'video',
           part: 'snippet',
-          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE',
+          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8',
           }
         })
         .then(res => {
@@ -176,6 +176,21 @@ createComment = (NewComment) => {
           })
           
 }
+
+createReply = (NewReply) => {
+  const newReplyFormatted = {
+    commentid: NewReply.commentID,
+    reply: NewReply.reply,
+  }
+
+  axios.post('http://127.0.0.1:8000/replies/', newReplyFormatted)
+        .then(res => console.log(res.data));
+          this.setState({
+          newReply: true
+          })
+          
+}
+
 handleLike = (commentID) => {
   console.log('I liked: ' + commentID)
   axios.patch('http://127.0.0.1:8000/comments/' + commentID + '/Like');
@@ -205,11 +220,13 @@ handleDislike = (commentID) => {
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> < Comments comments_list={this.state.comments} replies = {this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike}/> </Col>
+                        <Col sm={4}> <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply}/> 
+                        </Col>
+
                     </Row>
                     <Row>
                         <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> <CommentForm createNewComment={this.createComment}/></Col>
+                        <Col sm={4}> <CommentForm createNewComment={this.createComment} /></Col>
                     </Row>
                 </Container>
                 <br/>
