@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("starting a component did update")
     if (prevState.videoID !== this.state.videoID) {
        axios.get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
           .then(response => {
@@ -70,7 +69,6 @@ class App extends Component {
       return <div>No Video selected</div>;
     }
     else{
-      console.log('getting comment for new video:' + this.state.videoID)
       await axios
         .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
         .then(res => {
@@ -82,7 +80,6 @@ class App extends Component {
         .catch(function(error) {
           console.log(error);
         });
-        console.log(this.state.comments)
 
         //Get replies
         await axios
@@ -96,7 +93,6 @@ class App extends Component {
         .catch(function(error) {
           console.log(error);
         });
-        console.log(this.state.comments)
       }
   }
 
@@ -112,7 +108,6 @@ class App extends Component {
         }
         })
         .then(res => {
-            console.log(res.data.items)
             const musiclist = res.data.items;
             this.setState({
                 videos: musiclist
@@ -152,7 +147,6 @@ getVideoRecommendations = async (video) => {
           this.setState({
               recommendedVideos: res.data
           }); 
-          console.log(this.state.recommendedVideos)
           })
         .catch(function(error) {
           console.log(error);
@@ -209,7 +203,6 @@ handleDislike = (commentID) => {
 
 
   render() {
-    console.log(this.state.recommendedVideos)
       return(
               <>
                 <Container>

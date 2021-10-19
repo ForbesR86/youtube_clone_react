@@ -25,7 +25,8 @@ let [responseData, setResponseData] = React.useState([]);
 //let childComments = () => repliesList.filter(c => c.commentid === commentID)
 
 if (responseData) {
-    console.log(commentID + ' no child')
+    //console.log(commentID + ' no child')
+    <></>
 }
     return (
         <ul class="list-group list-group-flush">  
