@@ -1,42 +1,41 @@
-import React, {Component} from "react";
-import logotrans from '../../logotrans.png'
+import React, { Component } from "react";
+import logotrans from "../../logotrans.png";
+import './SearchBar.css';
 
 class SearchBar extends Component {
-    state = {
-        search: ''
-    };
-    handleChange = (event) => {
-        this.setState({
-            search: event.target.value
-        });
-    };
-    handleSubmit = event => {
-        event.preventDefault();
-        this.props.handleFormSubmit(this.state.search);
-    }
+  state = {
+    search: "",
+  };
+  handleChange = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.handleFormSubmit(this.state.search);
+  };
 
-    render() {
-        return (
-
-                <>
-                
-                <form onSubmit={this.handleSubmit}>
-                <img src={logotrans} alt="Clone Tube" width="10%" height="10%" />
-                <label htmlFor="videosearch">YouTube Video Search</label>
-                <input
-                    type="text"
-                    onChange={this.handleChange}
-                    value={this.state.search}
-                    placeholder="Search"
-                    name="videosearch" />
-                <button type="submit">Search</button>
-            </form></>
-                
-        
-                
-                
-            
-        )
-    }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            value={this.state.search}
+            onChange={this.handleChange}
+            placeholder="Search CloneTube"
+            name="videosearch"
+            aria-label="Example text with button addon"
+            aria-describedby="button-addon1"
+          />
+          <button className="btn btn-danger" type="submit" id="button-addon1">
+            Search
+          </button>
+        </div>
+      </form>
+    );
+  }
 }
 export default SearchBar;

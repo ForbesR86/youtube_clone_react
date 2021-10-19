@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
-// import Header from './components/Header/Header'
+import Header from './components/Header/Header'
 import SearchBar from './components/SearchBar/SearchBar'
 // import YouTubeAPI from './components/YouTubeAPI/YouTubeAPI'
 import VideoResults from './components/VideoResults/VideoResults'
@@ -212,8 +212,14 @@ handleDislike = (commentID) => {
     console.log(this.state.recommendedVideos)
       return(
               <>
-                <div class="container-fluid">
-                            <SearchBar handleFormSubmit={this.handleSubmit} />
+                <div class="container">
+
+                <div class="row">
+                <div class="col-6 col-md-4"><Header /></div>
+                <div class="col-md-8"><SearchBar handleFormSubmit={this.handleSubmit} /></div>
+    
+                </div>
+                            
                             <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
                 </div>
                 <hr/>
