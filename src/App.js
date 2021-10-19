@@ -212,16 +212,26 @@ handleDislike = (commentID) => {
     console.log(this.state.recommendedVideos)
       return(
               <>
-                <div class="container">
-
-                <div class="row">
-                <div class="col-6 col-md-4"><Header /></div>
-                <div class="col-md-8"><SearchBar handleFormSubmit={this.handleSubmit} /></div>
-    
-                </div>
-                            
-                            <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
-                </div>
+                <Container>
+                <Row>
+                  <Col></Col>
+                  <Col><Header /></Col>
+                  <Col></Col>
+                  
+                </Row>
+                <Row>
+                  <Col></Col>
+                    <Col sm={8}><SearchBar handleFormSubmit={this.handleSubmit} /></Col>
+                  <Col></Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
+                  </Col>
+                </Row>
+              
+                    
+                </Container>
                 <hr/>
                 <Container>
                     <Row>

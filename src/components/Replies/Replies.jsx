@@ -28,10 +28,10 @@ if (responseData) {
     console.log(commentID + ' no child')
 }
     return (
-            <><ul>    
+        <ul class="list-group list-group-flush">  
                 {responseData.map(Reply => {
                     return (
-                        <li key={Reply.id}>
+                        <li className="list-group-item" key={Reply.id}>
                         {Reply.reply}
                         </li>
                     
@@ -42,8 +42,7 @@ if (responseData) {
             </ul>
             
             
-            
-            </>
+  
             
 
     )

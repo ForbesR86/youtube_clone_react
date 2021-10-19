@@ -17,9 +17,12 @@ const Comments = ({comments_list, likeComment, dislikeComment, createNewReply}) 
                         {comment.comment} <br></br>
                         {comment.likes}<img src={like} alt="Like!" height="25" width="25" onClick={ () => likeComment(comment.id)}></img>
                         {comment.dislikes}<img src={dislike} alt="Dislike!" height="20" width="20" onClick={ () => dislikeComment(comment.id)}></img><br></br>
-
-                        <ReplyForm commentID={comment.id} createNewReply={createNewReply}/>
+                        <ul className="list-group">
                         <Replies commentID={comment.id} />
+                        <li className="list-group list-group-flush">&nbsp;</li>
+                        <ReplyForm commentID={comment.id} createNewReply={createNewReply}/>
+                        
+                        </ul>
                     </li>
                 )
                     
