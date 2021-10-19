@@ -10,10 +10,10 @@ const Comments = ({comments_list, likeComment, dislikeComment, createNewReply}) 
         return <div>No Video</div>;
     }
     return (
-        <ul>
+        <ul className="list-group">
             {comments_list.map(comment => {
                 return (
-                    <li key={comment.id}>
+                    <li className="list-group-item" key={comment.id}>
                         {comment.comment} <br></br>
                         {comment.likes}<img src={like} alt="Like!" height="25" width="25" onClick={ () => likeComment(comment.id)}></img>
                         {comment.dislikes}<img src={dislike} alt="Dislike!" height="20" width="20" onClick={ () => dislikeComment(comment.id)}></img><br></br>

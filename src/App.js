@@ -220,7 +220,10 @@ handleDislike = (commentID) => {
                 <Container>
                     <Row>
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply}/> 
+                        <Col sm={4}> 
+                          
+                          <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply}/> 
+                          
                         </Col>
 
                     </Row>
