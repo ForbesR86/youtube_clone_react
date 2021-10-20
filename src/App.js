@@ -27,7 +27,8 @@ class App extends Component {
       videoID: '',
       comments: [],
       replies: [],
-      newComment: false
+      newComment: false,
+      newReply: false,
     };
 
   };
@@ -60,6 +61,18 @@ class App extends Component {
             console.log(error);
          })
    }
+   if (this.state.newReply) {
+    axios.get('http://127.0.0.1:8000/replies/' + this.state.commentID + '/')
+       .then(response => {
+          this.setState({
+             replies: response.data,
+             newReply: false
+          });
+       })
+       .catch(function(error) {
+          console.log(error);
+       })
+ }
  }
 
 
