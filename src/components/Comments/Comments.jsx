@@ -18,6 +18,7 @@ const Comments = ({video, comments_list, likeComment, dislikeComment, createNewR
             
         <ul className="list-group">
             <li className="list-group-item">
+                {comments_list.length} Comments 
             <CommentForm createNewComment={createNewComment} />
             </li>
             

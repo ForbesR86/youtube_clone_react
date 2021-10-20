@@ -153,6 +153,7 @@ getVideoRecommendations = async (video) => {
           relatedToVideoId: video,
           type: 'video',
           part: 'snippet',
+          maxResults: 3,
           key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE',
           }
         })

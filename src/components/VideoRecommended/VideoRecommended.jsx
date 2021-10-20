@@ -4,7 +4,7 @@ import Video from '../Video/Video';
 
 const VideoRecommended = ({videos , videoSelectHandler}) => {
         if (!videos) {
-                return <div>No Video</div>;
+                return <div></div>;
               }
   
   
