@@ -22,6 +22,7 @@ const Comments = ({video, comments_list, likeComment, dislikeComment, createNewR
             </li>
             
         </ul>
+
             {comments_list.map(comment => {
                 return (
                     <div>
