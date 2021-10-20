@@ -13,7 +13,6 @@ import VideoResults from './components/VideoResults/VideoResults'
 import Footer from './components/Footer/Footer'
 import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import Comments from './components/Comments/Comments'
-import CommentForm from './components/Comment_Form/Comment_Form'
 import VideoRecommended from './components/VideoRecommended/VideoRecommended';
 import VideoDetails from './components/VideoDetails/VideoDetails'
 
@@ -231,14 +230,15 @@ handleDislike = (commentID) => {
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
                         <Col sm={4}> 
                           
-                          <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply}/> 
-                          
+                            
+                            <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} createNewComment={this.createComment}/> 
+                           
                         </Col>
 
                     </Row>
                     <Row>
                         <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> <CommentForm createNewComment={this.createComment} /></Col>
+                        <Col sm={4}> </Col>
                     </Row>
                 </Container>
                 <br/>

@@ -23,10 +23,19 @@ class CommentForm extends Component {
     render() { 
         return ( 
             <form onSubmit={this.handleSubmit}>
-                <label>Comment:</label>
-                <input name="comment" onChange={this.handleChange} value={this.state.comment} />
-                <button type="submit">Submit Comment</button>
+                <br/>
+            <div class="input-group mb-3">
+                
+                <input name="comment" onChange={this.handleChange} value={this.state.comment} type="text" className="form-control" placeholder="Add a comment" aria-describedby="button-addon2"/>
+                <button
+              class="btn btn-outline-secondary"
+              type="submit"
+              id="button-addon2">
+              Add
+            </button>
+                </div>
             </form>
+            
          );
     }
 }
