@@ -264,7 +264,7 @@ handleDislike = (commentID) => {
                         </Col>
                         <Col sm={4}> 
                           
-                        <Comments video={this.state.selectedVideo} comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/>
+                        <Comments video={this.state.selectedVideo} comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment} createNewComment={this.createComment}/>
                         
                         </Col>
 
