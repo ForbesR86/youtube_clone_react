@@ -25,7 +25,6 @@ let [responseData, setResponseData] = useState([]);
 //let childComments = () => repliesList.filter(c => c.commentid === commentID)
 
 if (newComment) {
-    console.log(newComment)
     fetchData()
 }
     return (

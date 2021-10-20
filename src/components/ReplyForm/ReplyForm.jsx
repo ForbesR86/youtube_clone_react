@@ -26,7 +26,7 @@ class ReplyForm extends Component {
     <li className="list-group list-group-flush">
 
         <form onSubmit={this.handleSubmit}>
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <input
               name="reply"
               type="text"
@@ -38,7 +38,7 @@ class ReplyForm extends Component {
             />
 
             <button
-              class="btn btn-outline-secondary"
+              className="btn btn-outline-secondary"
               type="submit"
               id="button-addon2"
             >

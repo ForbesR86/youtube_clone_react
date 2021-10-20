@@ -10,7 +10,7 @@ const VideoDetails = ({video}) => {
     return (
         
         <div className="card">
-            <div class="card-header">
+            <div className="card-header">
             Channel: {video.snippet.channelTitle}
   </div>
   

@@ -25,11 +25,11 @@ class CommentForm extends Component {
             
             <form onSubmit={this.handleSubmit}>
                 <br/>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
                 
                 <input name="comment" onChange={this.handleChange} value={this.state.comment} type="text" className="form-control" placeholder="Add a comment" aria-describedby="button-addon2"/>
                 <button
-              class="btn btn-outline-secondary"
+              className="btn btn-outline-secondary"
               type="submit"
               id="button-addon2">
               Add

@@ -50,7 +50,6 @@ class App extends Component {
           })
     }
     if (this.state.newComment) {
-      console.log('refreshing comments')
       axios.get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
          .then(response => {
             this.setState({
@@ -217,7 +216,7 @@ handleDislike = (commentID) => {
 
   render() {
       return(
-              <container>
+        <Container>
                 <Container>
                 <Row>
                   <Col>
@@ -278,7 +277,7 @@ handleDislike = (commentID) => {
 
                 </div>
                 <Footer />
-      </container>
+      </Container>
          
 
       )
