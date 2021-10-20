@@ -32,9 +32,9 @@ class App extends Component {
 
   };
 
-  componentDidMount() {
-    this.getComments();
-  }
+  // componentDidMount() {
+  //   this.getComments();
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.videoID !== this.state.videoID) {
@@ -63,37 +63,37 @@ class App extends Component {
  }
 
 
-  async getComments() {
-    if (!this.state.videoID) {
-      return <div>No Video selected</div>;
-    }
-    else{
-      await axios
-        .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
-        .then(res => {
-              const musiclist = res.data;
-              this.setState({
-                comments: musiclist
-              })
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+  // async getComments() {
+  //   if (!this.state.videoID) {
+  //     return <div>No Video selected</div>;
+  //   }
+  //   else{
+  //     await axios
+  //       .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+  //       .then(res => {
+  //             const musiclist = res.data;
+  //             this.setState({
+  //               comments: musiclist
+  //             })
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
 
-        //Get replies
-        await axios
-        .get('http://127.0.0.1:8000/replies/')
-        .then(res => {
-              const musiclist = res.data;
-              this.setState({
-                replies: musiclist
-              })
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      }
-  }
+  //       //Get replies
+  //       await axios
+  //       .get('http://127.0.0.1:8000/replies/')
+  //       .then(res => {
+  //             const musiclist = res.data;
+  //             this.setState({
+  //               replies: musiclist
+  //             })
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //     }
+  // }
 
 
   handleSubmit = async (termFromSearchBar) => {
@@ -107,9 +107,9 @@ class App extends Component {
         }
         })
         .then(res => {
-            const musiclist = res.data.items;
+            const videolist = res.data.items;
             this.setState({
-                videos: musiclist
+                videos: videolist
                 })
             }
         )
@@ -203,13 +203,26 @@ handleDislike = (commentID) => {
 
   render() {
       return(
-              <>
+              <container>
                 <Container>
                 <Row>
+                  <Col>
+                    <br/>
+                  </Col>
+                </Row>
+                
+                
+                
+                <Row>
                   <Col></Col>
-                  <Col><Header /></Col>
+                  <Col><Header/></Col>
                   <Col></Col>
                   
+                </Row>
+                <Row>
+                  <Col>
+                    <br/>
+                  </Col>
                 </Row>
                 <Row>
                   <Col></Col>
@@ -221,36 +234,35 @@ handleDislike = (commentID) => {
                     <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
                   </Col>
                 </Row>
-              
-                    
-                </Container>
-                <hr/>
-                <Container>
-                    <Row>
-                        <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
+                <Row>
+                  <Col>
+                    <br/>
+                  </Col>
+                </Row>
+                <Row>
+                        <Col sm={8}> 
+                        <VideoPlayer video={this.state.selectedVideo}/> 
+                        <VideoDetails video={this.state.selectedVideo}/>
+                        <VideoRecommended videos={this.state.recommendedVideos.items} videoSelectHandler={this.handleVideoSelect}/>
+                        </Col>
                         <Col sm={4}> 
                           
                             
-                            <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} createNewComment={this.createComment}/> 
+                            <Comments video={this.state.selectedVideo} comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} createNewComment={this.createComment}/> 
                            
                         </Col>
 
                     </Row>
-                    <Row>
-                        <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> </Col>
-                    </Row>
+                    
+                
+               
+                <Row>
+                  <Col>
+                    <Footer/>
+                  </Col>
+                </Row>
                 </Container>
-                <br/>
-
-                <div class="container-fluid">
-                            
-                            <VideoRecommended videos={this.state.recommendedVideos.items} videoSelectHandler={this.handleVideoSelect}/>
-
-
-                </div>
-                <Footer />
-            </>
+                </container>
          
 
       )

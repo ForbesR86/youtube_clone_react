@@ -4,7 +4,7 @@ import React from 'react';
 const VideoDetails = ({video}) => {
     
     if (!video) {
-        return <div>No Video</div>;
+        return <div></div>;
     }
 
     return (

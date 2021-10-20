@@ -5,10 +5,13 @@ import like from '../../static/like.png';
 import dislike from '../../static/dislike.png';
 import Replies from '../Replies/Replies'
 
-const Comments = ({comments_list, likeComment, dislikeComment, createNewReply, createNewComment}) => {
+const Comments = ({video, comments_list, likeComment, dislikeComment, createNewReply, createNewComment}) => {
     
     if (!comments_list) {
-        return <div>No Video</div>;
+        return <div></div>;
+    }
+    if (!video) {
+        return <div></div>;
     }
     return (
         <ul className="list-group">

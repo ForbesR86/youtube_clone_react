@@ -18,6 +18,12 @@ class SearchBar extends Component {
 
   render() {
     return (
+      
+      
+      
+      
+      
+      
       <form onSubmit={this.handleSubmit}>
         <div class="input-group mb-3">
           <input

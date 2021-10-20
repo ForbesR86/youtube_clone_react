@@ -2,7 +2,7 @@ import React from 'react';
 
 const VideoRecommended = ({videos , videoSelectHandler}) => {
   if (!videos) {
-    return <div>No Video</div>;
+    return <div></div>;
   }
   return (
     <div className="card-group">
