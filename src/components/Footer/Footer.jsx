@@ -6,7 +6,7 @@ function Footer(props) {
     return(
             <Container fluid>
                 <Row>
-                    <Col ><h6 class="text-center">Clone Tube Copyright 2021</h6></Col>
+                    <Col ><h6 className="text-center">Clone Tube Copyright 2021</h6></Col>
                 </Row>
             </Container>
     )

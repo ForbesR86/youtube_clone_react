@@ -50,6 +50,7 @@ class App extends Component {
           })
     }
     if (this.state.newComment) {
+      console.log('refreshing comments')
       axios.get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
          .then(response => {
             this.setState({
@@ -72,9 +73,9 @@ class App extends Component {
       await axios
         .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
         .then(res => {
-              const musiclist = res.data;
+              const commentList = res.data;
               this.setState({
-                comments: musiclist
+                comments: commentList
               })
         })
         .catch(function(error) {
@@ -85,9 +86,9 @@ class App extends Component {
         await axios
         .get('http://127.0.0.1:8000/replies/')
         .then(res => {
-              const musiclist = res.data;
+              const replyList = res.data;
               this.setState({
-                replies: musiclist
+                replies: replyList
               })
         })
         .catch(function(error) {
@@ -96,7 +97,9 @@ class App extends Component {
       }
   }
 
-
+// const KEY = 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'; //randy key
+// 2nd key AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE
+//const KEY = 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'; //gerry key
   handleSubmit = async (termFromSearchBar) => {
     await axios
         .get('https://www.googleapis.com/youtube/v3/search', {
@@ -104,7 +107,7 @@ class App extends Component {
           q: termFromSearchBar,
           part: "snippet",
           maxResults: 5,
-          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8'
+          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE'
         }
         })
         .then(res => {
@@ -129,9 +132,6 @@ handleVideoSelect = (video) => {
     })
 }
 
-//https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
-//https://www.googleapis.com/youtube/v3/search?relatedToVideoId=lN2AaifIp7s&type=lN2AaifIp7s&key=AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o
-
 getVideoRecommendations = async (video) => {
 
       await axios
@@ -140,7 +140,7 @@ getVideoRecommendations = async (video) => {
           relatedToVideoId: video,
           type: 'video',
           part: 'snippet',
-          key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8',
+          key: 'AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE',
           }
         })
         .then(res => {
@@ -180,7 +180,7 @@ createReply = (NewReply) => {
   axios.post('http://127.0.0.1:8000/replies/', newReplyFormatted)
         .then(res => console.log(res.data));
           this.setState({
-          newReply: true
+            newComment: true
           })
           
 }
@@ -231,7 +231,7 @@ handleDislike = (commentID) => {
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
                         <Col sm={4}> 
                           
-                          <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply}/> 
+                          <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/> 
                           
                         </Col>
 
@@ -243,7 +243,7 @@ handleDislike = (commentID) => {
                 </Container>
                 <br/>
 
-                <div class="container-fluid">
+                <div className="container-fluid">
                             
                             <VideoRecommended videos={this.state.recommendedVideos.items} videoSelectHandler={this.handleVideoSelect}/>
 

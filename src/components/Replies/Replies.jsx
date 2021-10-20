@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //'http://127.0.0.1:8000/replies/' + commentID + '/'
 
-const Replies = ({commentID, createNewReply}) => {
+const Replies = ({commentID, newComment}) => {
 
 let [responseData, setResponseData] = React.useState([]);
   const fetchData = React.useCallback(() => {
@@ -29,7 +29,7 @@ if (responseData) {
     <></>
 }
     return (
-        <ul class="list-group list-group-flush">  
+        <ul className="list-group list-group-flush">  
                 {responseData.map(Reply => {
                     return (
                         <li className="list-group-item" key={Reply.id}>

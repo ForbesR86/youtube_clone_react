@@ -15,7 +15,7 @@ const VideoPlayer = ({video}) => {
                 width="853" 
                 height="505" 
                 src={videoSrc} 
-                frameborder="0">
+                frameBorder="2">
             </iframe>
 
             </div></>
