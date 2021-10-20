@@ -246,7 +246,9 @@ handleDislike = (commentID) => {
                 <Row>
                         <Col sm={8}> 
                         <VideoPlayer video={this.state.selectedVideo}/> 
+                        <br/>
                         <VideoDetails video={this.state.selectedVideo}/>
+                        <br/>
                         <VideoRecommended videos={this.state.recommendedVideos} videoSelectHandler={this.handleVideoSelect}/>
                         </Col>
                         <Col sm={4}> 

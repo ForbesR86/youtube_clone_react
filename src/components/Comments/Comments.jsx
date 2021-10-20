@@ -14,32 +14,29 @@ const Comments = ({video, comments_list, likeComment, dislikeComment, createNewR
         return <div></div>;
     }
     return (
+        <div>
+            
         <ul className="list-group">
             <li className="list-group-item">
             <CommentForm createNewComment={createNewComment} />
             </li>
+            
+        </ul>
             {comments_list.map(comment => {
                 return (
                     <div>
+                        &nbsp;
+                    <ul className="list-group">
                     <li className="list-group-item d-flex justify-content-between align-items-center" key={comment.id}>
                         
-                    <div className="d-flex w-100 justify-content-between">
-      <h5 className="mb-1">{comment.comment}</h5>
-      <small >
+                    
+                    <h5 className="mb-1">{comment.comment}</h5>
+                    <small >
 
-      {comment.likes}<img src={like} alt="Like!" height="25" width="25" onClick={ () => likeComment(comment.id)}></img>
-                        {comment.dislikes}<img src={dislike} alt="Dislike!" height="20" width="20" onClick={ () => dislikeComment(comment.id)}></img><br></br>
+                    {comment.likes}<img src={like} alt="Like!" height="25" width="25" onClick={ () => likeComment(comment.id)}></img>
+                    {comment.dislikes}<img src={dislike} alt="Dislike!" height="20" width="20" onClick={ () => dislikeComment(comment.id)}></img><br></br>
           
-      </small>
-    </div>
-
-
-
-
-                    
-                        
-                    
-
+                    </small>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                         <ul className="list-group">
@@ -49,13 +46,14 @@ const Comments = ({video, comments_list, likeComment, dislikeComment, createNewR
                         
                         </ul>
                     </li>
+                    </ul>
                     </div>
 
                 )
                     
 
             })}
-</ul>
+    </div>
 
     )
 }
