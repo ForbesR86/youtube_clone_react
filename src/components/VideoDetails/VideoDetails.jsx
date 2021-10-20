@@ -4,11 +4,24 @@ import React from 'react';
 const VideoDetails = ({video}) => {
     
     if (!video) {
-        return <div>No Video</div>;
+        return <div></div>;
     }
 
     return (
-        <><h3>{video.snippet.title}</h3><h5>{video.snippet.description}</h5></>
+        
+        <div className="card">
+            <div class="card-header">
+            Channel: {video.snippet.channelTitle}
+  </div>
+  
+  <div className="card-body">
+    <h5 className="card-title">{video.snippet.title}</h5>
+    <p className="card-text">{video.snippet.description}</p>
+  </div>
+  
+</div>
+        
+    
 
     )
 }

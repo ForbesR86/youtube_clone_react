@@ -13,7 +13,6 @@ import VideoResults from './components/VideoResults/VideoResults'
 import Footer from './components/Footer/Footer'
 import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import Comments from './components/Comments/Comments'
-import CommentForm from './components/Comment_Form/Comment_Form'
 import VideoRecommended from './components/VideoRecommended/VideoRecommended';
 import VideoDetails from './components/VideoDetails/VideoDetails'
 
@@ -28,14 +27,15 @@ class App extends Component {
       videoID: '',
       comments: [],
       replies: [],
-      newComment: false
+      newComment: false,
+      newReply: false,
     };
 
   };
 
-  componentDidMount() {
-    this.getComments();
-  }
+  // componentDidMount() {
+  //   this.getComments();
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.videoID !== this.state.videoID) {
@@ -62,40 +62,52 @@ class App extends Component {
             console.log(error);
          })
    }
+   if (this.state.newReply) {
+    axios.get('http://127.0.0.1:8000/replies/' + this.state.commentID + '/')
+       .then(response => {
+          this.setState({
+             replies: response.data,
+             newReply: false
+          });
+       })
+       .catch(function(error) {
+          console.log(error);
+       })
+ }
  }
 
 
-  async getComments() {
-    if (!this.state.videoID) {
-      return <div>No Video selected</div>;
-    }
-    else{
-      await axios
-        .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
-        .then(res => {
-              const commentList = res.data;
-              this.setState({
-                comments: commentList
-              })
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+  // async getComments() {
+  //   if (!this.state.videoID) {
+  //     return <div>No Video selected</div>;
+  //   }
+  //   else{
+  //     await axios
+  //       .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+  //       .then(res => {
+  //             const musiclist = res.data;
+  //             this.setState({
+  //               comments: musiclist
+  //             })
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
 
-        //Get replies
-        await axios
-        .get('http://127.0.0.1:8000/replies/')
-        .then(res => {
-              const replyList = res.data;
-              this.setState({
-                replies: replyList
-              })
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      }
-  }
+  //       //Get replies
+  //       await axios
+  //       .get('http://127.0.0.1:8000/replies/')
+  //       .then(res => {
+  //             const musiclist = res.data;
+  //             this.setState({
+  //               replies: musiclist
+  //             })
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //     }
+  // }
 
 // const KEY = 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'; //randy key
 // 2nd key AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE
@@ -111,9 +123,9 @@ class App extends Component {
         }
         })
         .then(res => {
-            const videoList = res.data.items;
+            const videolist = res.data.items;
             this.setState({
-                videos: videoList
+                videos: videolist
                 })
             }
         )
@@ -125,11 +137,13 @@ class App extends Component {
 
 
 handleVideoSelect = (video) => {
-    this.getVideoRecommendations(video.id.videoId);
+    
     this.setState({
       selectedVideo: video,
       videoID: video.id.videoId
     })
+
+    this.getVideoRecommendations(this.state.videoId);
 }
 
 getVideoRecommendations = async (video) => {
@@ -144,8 +158,9 @@ getVideoRecommendations = async (video) => {
           }
         })
         .then(res => {
+          const videolist = res.data.items;
           this.setState({
-              recommendedVideos: res.data
+              recommendedVideos: videolist
           }); 
           })
         .catch(function(error) {
@@ -203,13 +218,26 @@ handleDislike = (commentID) => {
   render() {
     console.log(this.state.newComment)
       return(
-              <>
+              <container>
                 <Container>
                 <Row>
+                  <Col>
+                    <br/>
+                  </Col>
+                </Row>
+                
+                
+                
+                <Row>
                   <Col></Col>
-                  <Col><Header /></Col>
+                  <Col><Header/></Col>
                   <Col></Col>
                   
+                </Row>
+                <Row>
+                  <Col>
+                    <br/>
+                  </Col>
                 </Row>
                 <Row>
                   <Col></Col>
@@ -221,24 +249,34 @@ handleDislike = (commentID) => {
                     <VideoResults videos={this.state.videos} videoSelectHandler={this.handleVideoSelect}/>
                   </Col>
                 </Row>
-              
-                    
-                </Container>
-                <hr/>
-                <Container>
-                    <Row>
-                        <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
+                <Row>
+                  <Col>
+                    <br/>
+                  </Col>
+                </Row>
+                <Row>
+                        <Col sm={8}> 
+                        <VideoPlayer video={this.state.selectedVideo}/> 
+                        <br/>
+                        <VideoDetails video={this.state.selectedVideo}/>
+                        <br/>
+                        <VideoRecommended videos={this.state.recommendedVideos} videoSelectHandler={this.handleVideoSelect}/>
+                        </Col>
                         <Col sm={4}> 
                           
                         <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/>
-                          
+                        
                         </Col>
 
                     </Row>
-                    <Row>
-                        <Col sm={8}><VideoDetails video={this.state.selectedVideo}/> </Col>
-                        <Col sm={4}> <CommentForm createNewComment={this.createComment} /></Col>
-                    </Row>
+                    
+                
+               
+                <Row>
+                  <Col>
+                    <Footer/>
+                  </Col>
+                </Row>
                 </Container>
                 <br/>
 
@@ -249,12 +287,12 @@ handleDislike = (commentID) => {
 
                 </div>
                 <Footer />
-            </>
+      </container>
          
 
       )
   };
-
 }
+
 
 export default App;
