@@ -22,6 +22,7 @@ class CommentForm extends Component {
 
     render() { 
         return ( 
+            
             <form onSubmit={this.handleSubmit}>
                 <br/>
             <div class="input-group mb-3">

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //'http://127.0.0.1:8000/replies/' + commentID + '/'
 
-const Replies = ({commentID, createNewReply}) => {
+const Replies = ({commentID}) => {
 
 let [responseData, setResponseData] = React.useState([]);
   const fetchData = React.useCallback(() => {

@@ -121,11 +121,13 @@ class App extends Component {
 
 
 handleVideoSelect = (video) => {
-    this.getVideoRecommendations(video.id.videoId);
+    
     this.setState({
       selectedVideo: video,
       videoID: video.id.videoId
     })
+
+    this.getVideoRecommendations(this.state.videoId);
 }
 
 //https://www.googleapis.com/youtube/v3/search?relatedToVideoId={VIDEO ID HERE}&type=video&key={API KEY HERE}
@@ -140,11 +142,13 @@ getVideoRecommendations = async (video) => {
           type: 'video',
           part: 'snippet',
           key: 'AIzaSyBeML4-6rqt-2GGTQXGBIzOfNUoRlGfnS8',
+          maxResults: 3,
           }
         })
         .then(res => {
+          const videolist = res.data.items;
           this.setState({
-              recommendedVideos: res.data
+              recommendedVideos: videolist
           }); 
           })
         .catch(function(error) {
@@ -243,7 +247,7 @@ handleDislike = (commentID) => {
                         <Col sm={8}> 
                         <VideoPlayer video={this.state.selectedVideo}/> 
                         <VideoDetails video={this.state.selectedVideo}/>
-                        <VideoRecommended videos={this.state.recommendedVideos.items} videoSelectHandler={this.handleVideoSelect}/>
+                        <VideoRecommended videos={this.state.recommendedVideos} videoSelectHandler={this.handleVideoSelect}/>
                         </Col>
                         <Col sm={4}> 
                           
