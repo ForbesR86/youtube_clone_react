@@ -111,9 +111,9 @@ class App extends Component {
         }
         })
         .then(res => {
-            const musiclist = res.data.items;
+            const videoList = res.data.items;
             this.setState({
-                videos: musiclist
+                videos: videoList
                 })
             }
         )
@@ -186,7 +186,6 @@ createReply = (NewReply) => {
 }
 
 handleLike = (commentID) => {
-  console.log('I liked: ' + commentID)
   axios.patch('http://127.0.0.1:8000/comments/' + commentID + '/Like');
   this.setState({
     newComment: true
@@ -194,7 +193,6 @@ handleLike = (commentID) => {
 }
 
 handleDislike = (commentID) => {
-  console.log('I disliked: ' + commentID)
   axios.patch('http://127.0.0.1:8000/comments/' + commentID + '/Dislike');
   this.setState({
     newComment: true
@@ -203,6 +201,7 @@ handleDislike = (commentID) => {
 
 
   render() {
+    console.log(this.state.newComment)
       return(
               <>
                 <Container>
@@ -231,7 +230,7 @@ handleDislike = (commentID) => {
                         <Col sm={8}> <VideoPlayer video={this.state.selectedVideo}/> </Col>
                         <Col sm={4}> 
                           
-                          <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/> 
+                        <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/>
                           
                         </Col>
 

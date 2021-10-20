@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Replies = ({commentID, newComment}) => {
 
-let [responseData, setResponseData] = React.useState([]);
+let [responseData, setResponseData] = useState([]);
   const fetchData = React.useCallback(() => {
     axios({
       "method": "GET",
@@ -19,14 +19,14 @@ let [responseData, setResponseData] = React.useState([]);
       console.log(error)
     })
   }, [])
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData()
   }, [fetchData])
 //let childComments = () => repliesList.filter(c => c.commentid === commentID)
 
-if (responseData) {
-    //console.log(commentID + ' no child')
-    <></>
+if (newComment) {
+    console.log(newComment)
+    fetchData()
 }
     return (
         <ul className="list-group list-group-flush">  
