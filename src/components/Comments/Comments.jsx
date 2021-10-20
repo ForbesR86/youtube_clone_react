@@ -39,7 +39,7 @@ const Comments = ({video, comments_list, likeComment, dislikeComment, createNewR
           
                     </small>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <li className="list-group-item ">
                         <ul className="list-group">
                         <Replies commentID={comment.id} newComment={newComment}/>
                         <li className="list-group list-group-flush">&nbsp;</li>
