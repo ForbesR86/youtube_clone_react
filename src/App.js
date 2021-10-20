@@ -77,37 +77,37 @@ class App extends Component {
  }
 
 
-  // async getComments() {
-  //   if (!this.state.videoID) {
-  //     return <div>No Video selected</div>;
-  //   }
-  //   else{
-  //     await axios
-  //       .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
-  //       .then(res => {
-  //             const musiclist = res.data;
-  //             this.setState({
-  //               comments: musiclist
-  //             })
-  //       })
-  //       .catch(function(error) {
-  //         console.log(error);
-  //       });
+  async getComments() {
+    if (!this.state.videoID) {
+      return <div>No Video selected</div>;
+    }
+    else{
+      await axios
+        .get('http://127.0.0.1:8000/comments/' + this.state.videoID + '/')
+        .then(res => {
+              const musiclist = res.data;
+              this.setState({
+                comments: musiclist
+              })
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
 
-  //       //Get replies
-  //       await axios
-  //       .get('http://127.0.0.1:8000/replies/')
-  //       .then(res => {
-  //             const musiclist = res.data;
-  //             this.setState({
-  //               replies: musiclist
-  //             })
-  //       })
-  //       .catch(function(error) {
-  //         console.log(error);
-  //       });
-  //     }
-  // }
+        //Get replies
+        await axios
+        .get('http://127.0.0.1:8000/replies/')
+        .then(res => {
+              const musiclist = res.data;
+              this.setState({
+                replies: musiclist
+              })
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      }
+  }
 
 // const KEY = 'AIzaSyDdgB7l2s6hk8_RTvgn9nIM0FWcCJ8XB4o'; //randy key
 // 2nd key AIzaSyAJjEBxRHWYsA-cIEBA-_z-DJ1QNU-HcyE
@@ -264,19 +264,11 @@ handleDislike = (commentID) => {
                         </Col>
                         <Col sm={4}> 
                           
-                        <Comments comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/>
+                        <Comments video={this.state.selectedVideo} comments_list={this.state.comments} replies={this.replies} likeComment={this.handleLike} dislikeComment={this.handleDislike} createNewReply={this.createReply} newComment={this.state.newComment}/>
                         
                         </Col>
 
                     </Row>
-                    
-                
-               
-                <Row>
-                  <Col>
-                    <Footer/>
-                  </Col>
-                </Row>
                 </Container>
                 <br/>
 
