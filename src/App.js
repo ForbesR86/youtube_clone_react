@@ -216,7 +216,6 @@ handleDislike = (commentID) => {
 
 
   render() {
-    console.log(this.state.newComment)
       return(
               <container>
                 <Container>
